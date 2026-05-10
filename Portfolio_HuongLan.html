@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyễn Thị Hương Lan – BA / DA / PM Portfolio</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:        #F43F5E;
+      --rose-dark:   #BE123C;
+      --rose-light:  #FFE4E6;
+      --violet:      #8B5CF6;
+      --teal:        #0D9488;
+      --navy:        #0F172A;
+      --navy-mid:    #1E293B;
+      --navy-soft:   #334155;
+      --gray:        #64748B;
+      --gray-light:  #F1F5F9;
+      --gray-border: #E2E8F0;
+      --white:       #FFFFFF;
+      --text:        #0F172A;
+      --text-muted:  #64748B;
+      --grad-hero:   linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #0F172A 100%);
+      --grad-accent: linear-gradient(135deg, #F43F5E, #8B5CF6);
+      --grad-card:   linear-gradient(135deg, #1E293B, #0F172A);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      background: #FAFAFA;
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── CURSOR ── */
+    .cursor {
+      width: 10px; height: 10px;
+      background: var(--rose); border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      mix-blend-mode: multiply;
+    }
+    .cursor-ring {
+      width: 34px; height: 34px;
+      border: 1.5px solid var(--rose);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: all 0.18s ease;
+      opacity: 0.45;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.2rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(15,23,42,0.93);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      font-size: 1.05rem; font-weight: 800;
+      color: white; letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--rose); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none; letter-spacing: 0.08em;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-cta {
+      background: var(--rose) !important;
+      color: white !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--rose-dark) !important; transform: scale(1.04) !important; }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: var(--rose);
+      color: white; border: none;
+      padding: 0.85rem 2rem; border-radius: 100px;
+      font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(244,63,94,0.35); }
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.85);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      padding: 0.85rem 2rem; border-radius: 100px;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.2s; font-family: Arial, sans-serif;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--grad-hero);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 5rem 0;
+      position: relative; overflow: hidden;
+      gap: 60px;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(244,63,94,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,63,94,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(244,63,94,0.1) 0%, transparent 70%);
+      bottom: -80px; left: 20%; pointer-events: none;
+    }
+    /* LEFT col */
+    .hero-left { position: relative; z-index: 2; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(244,63,94,0.12);
+      border: 1px solid rgba(244,63,94,0.3);
+      color: #FDA4AF;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--rose); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-name {
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      font-weight: 900;
+      color: white;
+      line-height: 0.97;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .hero-name .highlight {
+      background: var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-role {
+      font-size: 1rem; font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+    .hero-subtitle {
+      font-size: 0.93rem;
+      color: rgba(255,255,255,0.42);
+      max-width: 480px; line-height: 1.75;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+
+    /* STATS BAR — like image 1 */
+    .hero-stats-bar {
+      margin-top: 3.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 2rem;
+      display: flex;
+      animation: fadeUp 0.6s ease 0.5s both;
+    }
+    .hero-stat-item {
+      flex: 1;
+      padding: 0 1.8rem 0 0;
+      position: relative;
+    }
+    .hero-stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute; right: 0; top: 4px; bottom: 4px;
+      width: 1px;
+      background: rgba(255,255,255,0.12);
+    }
+    .hero-stat-item:not(:first-child) { padding-left: 1.8rem; }
+    .hero-stat-num {
+      font-size: 2.2rem; font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-num.rose  { color: var(--rose); }
+    .hero-stat-num.violet { color: #A78BFA; }
+    .hero-stat-num.white { color: white; }
+    .hero-stat-label {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* RIGHT col — photo card */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center; align-items: center;
+      align-self: center;
+    }
+    .hero-photo-card {
+      position: relative;
+      width: 340px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(139,92,246,0.3), 0 0 0 1px rgba(255,255,255,0.07);
+    }
+    .hero-photo-card img {
+      width: 100%; display: block;
+      object-fit: cover; object-position: top center;
+      height: 500px;
+    }
+    /* floating badge on photo */
+    .hero-photo-badge {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 12px 20px;
+      display: flex; align-items: center; gap: 10px;
+      white-space: nowrap;
+    }
+    .hero-photo-badge .badge-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #34D399; flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    .hero-photo-badge .badge-text {
+      font-size: 0.8rem; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── SECTION BASE ── */
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      color: var(--navy);
+      white-space: nowrap;
+      line-height: 1.15;
+      margin-bottom: 50px;
+    }
+    .section-title span {
+      background: var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 100px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      background: var(--gray-light);
+    }
+    /* LEFT — dark info card */
+    .about-card {
+      background: linear-gradient(160deg, #0F172A 0%, #1E1B4B 60%, #0F172A 100%);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(244,63,94,0.18) 0%, transparent 70%);
+      top: -40px; right: -40px;
+      pointer-events: none;
+    }
+    .about-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--grad-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 900; color: white;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .about-card-name {
+      font-size: 1.2rem; font-weight: 800; color: white;
+      margin-bottom: 4px;
+    }
+    .about-card-roles {
+      font-size: 0.78rem; color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+    }
+    .about-info-rows {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 20px;
+    }
+    .about-info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .about-info-label {
+      font-size: 0.75rem; color: rgba(255,255,255,0.35);
+      font-weight: 500; flex-shrink: 0;
+    }
+    .about-info-value {
+      font-size: 0.82rem; color: rgba(255,255,255,0.8);
+      font-weight: 700; text-align: right;
+    }
+    .about-info-value a { color: var(--rose); text-decoration: none; }
+    .about-info-value a:hover { text-decoration: underline; }
+    .about-card-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .about-card-tag {
+      padding: 5px 14px;
+      background: rgba(244,63,94,0.15);
+      border: 1px solid rgba(244,63,94,0.3);
+      color: #FDA4AF;
+      border-radius: 100px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    /* RIGHT — text + specialty grid */
+    .about-right-content { display: flex; flex-direction: column; }
+    .about-big-title {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900; color: var(--navy);
+      line-height: 1.1; margin-bottom: 22px;
+    }
+    .about-big-title span {
+      background: var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .about-desc {
+      font-size: 0.95rem; line-height: 1.8;
+      color: var(--gray); margin-bottom: 14px;
+    }
+    .about-desc strong { color: var(--navy); font-weight: 700; }
+    .about-specialty-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 28px;
+    }
+    .about-spec-card {
+      background: white;
+      border: 1px solid var(--gray-border);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .about-spec-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,0.1); transform: translateY(-3px); }
+    .about-spec-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .about-spec-label {
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--navy); line-height: 1.3;
+    }
+
+    /* ── EDUCATION ── */
+    #education { padding: 100px 80px; background: white; }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+    .edu-main-card {
+      background: var(--navy);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative; overflow: hidden;
+      color: white;
+    }
+    .edu-main-card::before {
+      content: '🎓';
+      position: absolute; top: 24px; right: 32px;
+      font-size: 4rem; opacity: 0.06;
+    }
+    .edu-school {
+      font-size: 1.15rem; font-weight: 800;
+      color: white; margin-bottom: 8px;
+    }
+    .edu-meta {
+      font-size: 0.85rem; color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+    .edu-period { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+    .gpa-badge {
+      display: inline-block;
+      background: var(--rose);
+      color: white;
+      font-size: 0.82rem; font-weight: 700;
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .edu-achievements {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .edu-achievements li {
+      font-size: 0.87rem; color: rgba(255,255,255,0.7); line-height: 1.5;
+      display: flex; gap: 10px;
+    }
+    /* Right side: cert cards stacked */
+    .edu-right-col { display: flex; flex-direction: column; gap: 20px; }
+    .cert-card {
+      background: var(--gray-light);
+      border: 1px solid var(--gray-border);
+      border-radius: 16px; padding: 26px 28px;
+      display: flex; align-items: center; gap: 18px;
+      flex: 1;
+    }
+    .cert-card-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.08);
+      flex-shrink: 0;
+    }
+    .cert-card-body {}
+    .cert-card-title {
+      font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 3px;
+    }
+    .cert-card-sub { font-size: 0.8rem; color: var(--gray); }
+
+    /* ── SKILLS ── */
+    #skills { padding: 100px 80px; background: linear-gradient(160deg, #0F172A 0%, #1E1B4B 60%, #0F172A 100%); }
+    #skills .section-label { color: var(--rose); }
+    #skills .section-title { color: white; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .skill-group {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 26px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .skill-group:hover { background: rgba(244,63,94,0.07); transform: translateY(-4px); }
+    .skill-group-title {
+      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 16px;
+    }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-chip {
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.8rem; padding: 5px 13px;
+      border-radius: 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── PROJECTS (FULL-PAGE SLIDES) ── */
+    #projects { background: var(--gray-light); padding: 100px 0 0; }
+    #projects .proj-header-wrap {
+      padding: 0 80px 60px;
+    }
+
+    /* Each project = a full viewport-height section */
+    .project-slide {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: white;
+      border-top: 1px solid var(--gray-border);
+      overflow: hidden;
+      position: relative;
+    }
+    .project-slide:nth-child(even) {
+      grid-template-columns: 1fr 1fr;
+      direction: rtl;
+    }
+    .project-slide:nth-child(even) > * { direction: ltr; }
+
+    /* Left: visuals panel */
+    .proj-visuals {
+      background: linear-gradient(160deg, #0F172A 0%, #1E1B4B 60%, #0F172A 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 48px;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-visuals::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(244,63,94,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,63,94,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .proj-img-wrap {
+      position: relative; z-index: 1;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      background: var(--navy-mid);
+      aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .proj-img-wrap.tall { aspect-ratio: 4/3; }
+   .proj-img-wrap img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: top center;
+
+  display: block;
+}
+    .proj-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .proj-img-placeholder .ph-icon { font-size: 2.5rem; opacity: 0.4; }
+    .proj-img-placeholder .ph-label { font-weight: 600; }
+    .proj-img-placeholder .ph-sub { font-size: 0.7rem; opacity: 0.6; }
+
+    .proj-imgs-grid {
+      position: relative; z-index: 1;
+      display: grid; gap: 14px; width: 100%;
+    }
+    .proj-imgs-grid.two { grid-template-columns: 1fr 1fr; }
+    .proj-imgs-grid.three { grid-template-columns: 1fr 1fr; }
+    .proj-imgs-grid.three .proj-img-wrap:first-child { grid-column: 1 / -1; }
+
+    /* Right: info panel */
+    .proj-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 56px;
+    }
+    .proj-num {
+      font-size: 4rem; font-weight: 900;
+      color: rgba(244,63,94,0.1);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
+    .proj-period-badge {
+      display: inline-block;
+      background: var(--rose-light);
+      color: var(--rose-dark);
+      font-size: 0.75rem; font-weight: 700;
+      padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+    }
+    .proj-name {
+      font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .proj-desc {
+      font-size: 0.93rem; line-height: 1.75;
+      color: var(--gray); margin-bottom: 22px;
+    }
+    .proj-highlights {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 22px;
+    }
+    .proj-highlights li {
+      font-size: 0.87rem; color: var(--gray); line-height: 1.5;
+      display: flex; gap: 10px;
+    }
+    .proj-highlights li::before {
+      content: '→';
+      color: var(--rose); flex-shrink: 0; font-weight: 700;
+    }
+    .proj-result {
+      background: #F0FDF4;
+      border-left: 3px solid #16A34A;
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-size: 0.84rem; color: #15803D;
+      font-weight: 600; margin-bottom: 20px;
+    }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+    .proj-tag {
+      font-size: 0.76rem; padding: 4px 13px;
+      background: var(--gray-light);
+      color: var(--gray);
+      border-radius: 100px;
+      border: 1px solid var(--gray-border);
+      font-weight: 600;
+    }
+    .proj-links { display: flex; gap: 10px; }
+    .proj-link-btn {
+      font-size: 0.82rem; padding: 9px 20px;
+      border-radius: 100px;
+      text-decoration: none; font-weight: 700;
+      background: var(--navy); color: white;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .proj-link-btn:hover { opacity: 0.82; transform: translateY(-1px); }
+    .proj-link-btn.ghost {
+      background: transparent;
+      border: 1.5px solid var(--gray-border);
+      color: var(--gray);
+    }
+    .proj-link-btn.ghost:hover { border-color: var(--rose); color: var(--rose); }
+
+    /* project slide accent stripe */
+    .proj-accent-stripe {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: var(--grad-accent);
+    }
+/* ── UI/UX special layout ── */
+.uiux-layout {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 620px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 18px;
+}
+
+/* hàng 3 phone */
+.uiux-phones-row {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 16px;
+}
+
+/* từng phone card */
+.phone-wrap {
+  width: 170px;
+  height: 360px;
+
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: #111827;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.06);
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ảnh phone */
+.phone-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* flow ngang */
+.uiux-wide-wrap {
+  width: 100%;
+  height: 210px;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: #111827;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,255,255,0.06);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ảnh flow */
+.uiux-wide-wrap img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  display: block;
+}
+    /* ── CONTACT ── */
+    #contact {
+      padding: 100px 80px;
+      background: linear-gradient(160deg, #0F172A 0%, #1E1B4B 60%, #0F172A 100%);
+    }
+    .contact-outer {
+      background: rgba(255,255,255,0.03);
+      border-radius: 24px;
+      padding: 64px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .contact-left-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .contact-left-label::before { content: '—'; opacity: 0.5; }
+    .contact-heading {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900; color: white; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .contact-heading em {
+      font-style: italic;
+      background: var(--grad-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .contact-subtext {
+      font-size: 0.93rem; line-height: 1.75;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 36px;
+      max-width: 360px;
+    }
+    .contact-open-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 10px 22px;
+      font-size: 0.85rem; font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: default;
+    }
+    .contact-open-btn .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #34D399;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    /* Contact cards on the right */
+    .contact-cards {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .contact-card {
+      display: flex; align-items: center; gap: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 18px 22px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .contact-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.16);
+      transform: translateX(4px);
+    }
+    .contact-card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-card-icon.rose { background: rgba(244,63,94,0.15); border-color: rgba(244,63,94,0.25); }
+    .contact-card-body { flex: 1; }
+    .contact-card-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      margin-bottom: 3px;
+    }
+    .contact-card-value {
+      font-size: 0.92rem; font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+    .contact-card-arrow {
+      color: rgba(255,255,255,0.25);
+      font-size: 1rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .contact-card:hover .contact-card-arrow {
+      color: rgba(255,255,255,0.6);
+      transform: translateX(3px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(160deg, #0F172A 0%, #1E1B4B 60%, #0F172A 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 80px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.83rem; color: rgba(255,255,255,0.3); }
+    .footer-logo { font-size: 1.2rem; font-weight: 900; color: white; }
+    .footer-logo span { color: var(--rose); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 0; gap: 40px; }
+      .hero-right { justify-content: center; padding-top: 0; }
+      .hero-photo-card { width: 280px; }
+      .hero-photo-card img { height: 360px; }
+      .hero-stats-bar { flex-wrap: wrap; gap: 0; }
+      .hero-stat-item { min-width: 50%; padding: 1rem 1rem 1rem 0; }
+      .hero-stat-item:not(:last-child)::after { display: none; }
+      #about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      #education { padding: 60px 24px; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .about-specialty-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-title { white-space: normal; }
+      #skills { padding: 60px 24px; }
+      #projects .proj-header-wrap { padding: 0 24px 40px; }
+      .project-slide {
+        grid-template-columns: 1fr !important;
+        direction: ltr !important;
+        min-height: auto;
+      }
+      .proj-visuals { padding: 40px 24px; min-height: 340px; }
+      .proj-info { padding: 40px 24px; }
+      #contact { padding: 40px 16px; }
+      .contact-outer { grid-template-columns: 1fr; padding: 40px 28px; gap: 40px; border-radius: 16px; }
+      footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">Hương <span>Lan</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-tag">Open to Internship &amp; Full-time</div>
+    <h1 class="hero-name">
+      Nguyễn Thị<br />
+      <span class="highlight">Hương Lan</span>
+    </h1>
+    <p class="hero-role">Business Analyst · Data Analyst · Project Management · Software Implementation</p>
+    <p class="hero-subtitle">
+      I bridge the gap between business needs and technical solutions — turning complex requirements into clear, actionable systems.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+
+    <!-- Stats bar — style like image 1 -->
+    <div class="hero-stats-bar">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num rose">3.71</div>
+        <div class="hero-stat-label">GPA / 4.0</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num violet">5+</div>
+        <div class="hero-stat-label">Projects</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num white">690</div>
+        <div class="hero-stat-label">TOEIC Score</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num rose">01</div>
+        <div class="hero-stat-label">Championship</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — photo card -->
+  <div class="hero-right">
+    <div class="hero-photo-card">
+      <img src="huonglan.jpg" alt="Nguyễn Thị Hương Lan" />
+      <div class="hero-photo-badge">
+        <span class="badge-dot"></span>
+        <span class="badge-text">Open to opportunities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <!-- LEFT: dark info card -->
+  <div class="about-card reveal">
+    <div class="about-avatar">HL</div>
+    <div class="about-card-name">Nguyen Thi Huong Lan</div>
+    <div class="about-card-roles">BA · DA · Software Implementation · PM</div>
+    <div class="about-info-rows">
+      <div class="about-info-row">
+        <span class="about-info-label">University</span>
+        <span class="about-info-value">UFM — Ho Chi Minh City</span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">Program</span>
+        <span class="about-info-value">Management Information Systems</span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">Major</span>
+        <span class="about-info-value">Management Informatics</span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">Duration</span>
+        <span class="about-info-value">09/2023 – 04/2027</span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">Location</span>
+        <span class="about-info-value">Ho Chi Minh City, Vietnam</span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">Phone</span>
+        <span class="about-info-value">0396 708 960</span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">Email</span>
+        <span class="about-info-value"><a href="mailto:huonglannguyen185@gmail.com">huonglannguyen185@gmail.com</a></span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">LinkedIn</span>
+        <span class="about-info-value"><a href="https://www.linkedin.com/in/hương-lan-nguyễn-b002a2328/" target="_blank">linkedin.com/in/huong-lan</a></span>
+      </div>
+      <div class="about-info-row">
+        <span class="about-info-label">GitHub</span>
+        <span class="about-info-value"><a href="https://github.com/LanNguyen185" target="_blank">github.com/LanNguyen185</a></span>
+      </div>
+    </div>
+    <div class="about-card-tags">
+      <span class="about-card-tag">BA</span>
+      <span class="about-card-tag">DA</span>
+      <span class="about-card-tag">UX Research</span>
+      <span class="about-card-tag">Software Impl.</span>
+      <span class="about-card-tag">PM</span>
+    </div>
+  </div>
+
+  <!-- RIGHT: text + specialty grid -->
+  <div class="about-right-content reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="about-big-title">Analyze. Build.<br /><span>Deliver impact.</span></h2>
+    <p class="about-desc">
+      I'm Huong Lan — a third-year MIS student (Management Informatics) at the University of Finance–Marketing (UFM), Ho Chi Minh City. I work across the full project lifecycle: gathering requirements, modeling processes, designing databases, and researching user experiences.
+    </p>
+    <p class="about-desc">
+      I'm actively seeking a <strong>BA or DA internship</strong> where I can apply structured analytical thinking to real business problems — bridging the gap between business needs and technical solutions.
+    </p>
+    <div class="about-specialty-grid">
+      <div class="about-spec-card">
+        <div class="about-spec-icon">📋</div>
+        <div class="about-spec-label">Business Analysis</div>
+      </div>
+      <div class="about-spec-card">
+        <div class="about-spec-icon">📊</div>
+        <div class="about-spec-label">Data Analysis</div>
+      </div>
+      <div class="about-spec-card">
+        <div class="about-spec-icon">⚙️</div>
+        <div class="about-spec-label">Software Implementation</div>
+      </div>
+      <div class="about-spec-card">
+        <div class="about-spec-icon">🗂️</div>
+        <div class="about-spec-label">Project Management</div>
+      </div>
+      <div class="about-spec-card">
+        <div class="about-spec-icon">🔍</div>
+        <div class="about-spec-label">UX Research</div>
+      </div>
+      <div class="about-spec-card">
+        <div class="about-spec-icon">🗄️</div>
+        <div class="about-spec-label">Database Design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label reveal">Academic Background</div>
+  <h2 class="section-title reveal">Education & <span>Certifications</span></h2>
+
+  <div class="edu-grid reveal">
+    <!-- LEFT: main uni card -->
+    <div class="edu-main-card">
+      <div class="edu-school">University of Finance – Marketing (UFM)</div>
+      <div class="edu-meta">Management Information Systems · Specialization: Information Technology Management</div>
+      <div class="edu-period">09/2023 – Present · Ho Chi Minh City</div>
+      <span class="gpa-badge">GPA: 3.71 / 4.0</span>
+      <ul class="edu-achievements">
+        <li>🥇 Champion — Chatbot AI UFM Competition with SV5T Award</li>
+        <li>🏆 Top 5 — Startup 2025 (Project VGuard: life-protecting wearable device)</li>
+      </ul>
+    </div>
+    <!-- RIGHT: cert cards -->
+    <div class="edu-right-col">
+      <div class="cert-card">
+        <div class="cert-card-icon">🌐</div>
+        <div class="cert-card-body">
+          <div class="cert-card-title">TOEIC L&R: 690 / 900</div>
+          <div class="cert-card-sub">International English Certificate (Listening & Reading)</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card-icon">🗣️</div>
+        <div class="cert-card-body">
+          <div class="cert-card-title">TOEIC S&W: 280 / 400</div>
+          <div class="cert-card-sub">International English Certificate (Speaking & Writing)</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card-icon">🗄️</div>
+        <div class="cert-card-body">
+          <div class="cert-card-title">SQL Masterclass</div>
+          <div class="cert-card-sub">Completed — structured query language proficiency</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label reveal">What I Work With</div>
+  <h2 class="section-title reveal">Skills & <span>Tools</span></h2>
+
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-title">📋 Business Analysis</div>
+      <div class="skill-chips">
+        <span class="skill-chip">BPMN</span>
+        <span class="skill-chip">Use Case</span>
+        <span class="skill-chip">DFD</span>
+        <span class="skill-chip">BFD</span>
+        <span class="skill-chip">ERD</span>
+        <span class="skill-chip">AS-IS / TO-BE</span>
+        <span class="skill-chip">BRD Writing</span>
+        <span class="skill-chip">Flowchart</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">📊 Data & Reporting</div>
+      <div class="skill-chips">
+        <span class="skill-chip">SQL Server</span>
+        <span class="skill-chip">Power BI</span>
+        <span class="skill-chip">Excel</span>
+        <span class="skill-chip">SAP ERP</span>
+        <span class="skill-chip">Data Visualization</span>
+        <span class="skill-chip">Dashboard Design</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🛠️ Tools & Platforms</div>
+      <div class="skill-chips">
+        <span class="skill-chip">Figma</span>
+        <span class="skill-chip">Enterprise Architect</span>
+        <span class="skill-chip">Draw.io</span>
+        <span class="skill-chip">GitHub</span>
+        <span class="skill-chip">Google Drive</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">💻 Programming</div>
+      <div class="skill-chips">
+        <span class="skill-chip">C# / WinForms</span>
+        <span class="skill-chip">C++</span>
+        <span class="skill-chip">Python (Basic)</span>
+        <span class="skill-chip">HTML / CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🤝 Soft Skills</div>
+      <div class="skill-chips">
+        <span class="skill-chip">Analytical Thinking</span>
+        <span class="skill-chip">Communication</span>
+        <span class="skill-chip">Teamwork</span>
+        <span class="skill-chip">Time Management</span>
+        <span class="skill-chip">Problem Solving</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🌐 Languages</div>
+      <div class="skill-chips">
+        <span class="skill-chip">Vietnamese (Native)</span>
+        <span class="skill-chip">English (TOEIC 690)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="proj-header-wrap">
+    <div class="section-label reveal">What I've Built</div>
+    <h2 class="section-title reveal">Featured <span>Projects</span></h2>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       PROJECT 1 — Highlands Coffee
+  ══════════════════════════════════════════════ -->
+  <div class="project-slide reveal">
+    <div class="proj-accent-stripe"></div>
+    <!-- Visuals -->
+    <div class="proj-visuals">
+      <div class="proj-imgs-grid three">
+        <!-- Ảnh 1: màn hình chính hệ thống -->
+        <div class="proj-img-wrap">
+          <img src="highlands_1.jpg" alt="Highlands Coffee – System Overview"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">☕</div>
+            <div class="ph-label">System Overview</div>
+            <div class="ph-sub">Thay bằng ảnh chụp màn hình hệ thống</div>
+          </div>
+        </div>
+        <!-- Ảnh 2 -->
+        <div class="proj-img-wrap">
+          <img src="highlands_2.jpg" alt="Highlands Coffee – Sơ đồ lớp"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">📊</div>
+            <div class="ph-label">Sơ đồ lớp</div>
+          </div>
+        </div>
+        <!-- Ảnh 3 -->
+        <div class="proj-img-wrap">
+          <img src="highlands_3.jpg" alt="Highlands Coffee – UseCase"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">🗺️</div>
+            <div class="ph-label"> Use Case</div>
+            <div class="ph-sub">Thay bằng sơ đồ usecase</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info -->
+    <div class="proj-info">
+      <div class="proj-num">01</div>
+      <span class="proj-period-badge">05 – 08 / 2025</span>
+      <div class="proj-name">Sales Management System – Highlands Coffee</div>
+      <p class="proj-desc">End-to-end development of a point-of-sale and sales management system for a Highlands Coffee-modeled business, from requirements gathering to deployment.</p>
+      <ul class="proj-highlights">
+        <li>Collected and analyzed business requirements from stakeholders based on real sales workflows</li>
+        <li>Built 30+ Use Cases, BPMN, BFD, DFD, and ERD diagrams</li>
+        <li>Conducted AS-IS / TO-BE analysis, proposed order-processing flow improvements</li>
+        <li>Developed system in C# WinForms &amp; SQL Server with 20+ features</li>
+        <li>Designed Power BI dashboard for revenue and sales performance tracking</li>
+      </ul>
+      <div class="proj-result">✓ Mastered end-to-end BA, design, and deployment lifecycle</div>
+      <div class="proj-tags">
+        <span class="proj-tag">C# WinForms</span>
+        <span class="proj-tag">SQL Server</span>
+        <span class="proj-tag">Power BI</span>
+        <span class="proj-tag">BPMN</span>
+        <span class="proj-tag">Use Case</span>
+        <span class="proj-tag">ERD</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://drive.google.com/drive/folders/1uYDpRAuJk7U9mBWtvUDSVm6zsBW_w6BA?usp=drive_link" target="_blank" class="proj-link-btn">Drive ↗</a>
+        <a href="https://github.com/LanNguyen185/Adidas-Decision-Support-System" target="_blank" class="proj-link-btn ghost">GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       PROJECT 2 — SAP ERP
+  ══════════════════════════════════════════════ -->
+  <div class="project-slide reveal">
+    <div class="proj-accent-stripe"></div>
+    <!-- Visuals -->
+    <div class="proj-visuals">
+      <div class="proj-imgs-grid three">
+        <div class="proj-img-wrap">
+          <img src="sap_1.png" alt="SAP ERP – Order-to-Cash"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">🛒</div>
+            <div class="ph-label">Order-to-Cash Flow</div>
+            <div class="ph-sub">Thay bằng ảnh SAP transaction</div>
+          </div>
+        </div>
+        <div class="proj-img-wrap">
+          <img src="sap_2.png" alt="SAP ERP – Nhập kho NVL cho lệnh sản xuất "
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">⚙️</div>
+            <div class="ph-label">Nhập kho NVL cho lệnh sản xuất </div>
+          </div>
+        </div>
+        <div class="proj-img-wrap">
+          <img src="sap_3.png" alt="SAP ERP – document flow"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">📦</div>
+            <div class="ph-label">Document flow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info -->
+    <div class="proj-info">
+      <div class="proj-num">02</div>
+      <span class="proj-period-badge">05 – 08 / 2025</span>
+      <div class="proj-name">ERP-SAP Process Analysis (GBI Case Study)</div>
+      <p class="proj-desc">Hands-on simulation and analysis of core enterprise resource planning processes using SAP ERP, covering three integrated business modules.</p>
+      <ul class="proj-highlights">
+        <li>Executed Order-to-Cash (SD), Procure-to-Pay (MM), and Plan-to-Produce (PP) workflows in SAP</li>
+        <li>Analyzed data flows and document generation across departments in each process</li>
+        <li>Evaluated operational efficiency and identified bottlenecks</li>
+        <li>Modeled cross-module linkages between SD, MM, and PP in an enterprise context</li>
+      </ul>
+      <div class="proj-result">✓ Gained real-world understanding of ERP data flows and enterprise operations</div>
+      <div class="proj-tags">
+        <span class="proj-tag">SAP ERP</span>
+        <span class="proj-tag">SD · MM · PP</span>
+        <span class="proj-tag">Process Analysis</span>
+        <span class="proj-tag">Bottleneck ID</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://drive.google.com/drive/folders/1y9lYlFGFqFt4IS5ULnBWEzjO_kARAmYl?usp=drive_link" target="_blank" class="proj-link-btn">Drive ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       PROJECT 3 — DSS Adidas
+  ══════════════════════════════════════════════ -->
+  <div class="project-slide reveal">
+    <div class="proj-accent-stripe"></div>
+    <!-- Visuals -->
+    <div class="proj-visuals">
+      <div class="proj-imgs-grid three">
+        <div class="proj-img-wrap">
+          <img src="dss_1.png" alt="DSS Adidas – chatbotAI"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+    	    <div class="ph-icon">🤖</div>
+            <div class="ph-label">AI Chatbot Interface</div>
+            <div class="ph-sub">Thay bằng ảnh chatbot</div>
+            <div class="ph-icon">📈</div>
+            <div class="ph-label">Power BI Dashboard</div>
+            <div class="ph-sub">Thay bằng ảnh dashboard KPI</div>
+          </div>
+        </div>
+        <div class="proj-img-wrap">
+          <img src="dss_2.png" alt="DSS Adidas – Excel Model"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">📋</div>
+            <div class="ph-label">Excel DSS Model</div>
+            <div class="ph-sub">Thay bằng ảnh Excel analysis</div>
+          </div>
+        </div>
+        <div class="proj-img-wrap">
+          <img src="dss_3.png" alt="DSS Adidas – Power BI"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">📈</div>
+            <div class="ph-label">Power BI Dashboard</div>
+            <div class="ph-sub">Thay bằng ảnh dashboard KPI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info -->
+    <div class="proj-info">
+      <div class="proj-num">03</div>
+      <span class="proj-period-badge">02 – 04 / 2026</span>
+      <div class="proj-name">Decision Support System (DSS) – Adidas</div>
+      <p class="proj-desc">Built a multi-component Decision Support System integrating Excel analytics, Power BI dashboards, and an AI chatbot to support data-driven business decisions for an Adidas-modeled enterprise.</p>
+      <ul class="proj-highlights">
+        <li>Defined business requirements and KPIs for monitoring</li>
+        <li>Built DSS on Excel for business data analysis and scenario modeling</li>
+        <li>Designed Power BI dashboard for real-time KPI tracking and executive reporting</li>
+        <li>Developed AI chatbot for context-aware data querying</li>
+        <li>Simulated full pipeline: from raw data analysis to actionable business recommendations</li>
+      </ul>
+      <div class="proj-result">✓ Delivered a full DSS deployment; enhanced data analysis, visualization, and AI integration skills</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Excel DSS</span>
+        <span class="proj-tag">Power BI</span>
+        <span class="proj-tag">AI Chatbot</span>
+        <span class="proj-tag">KPI Analysis</span>
+        <span class="proj-tag">Python</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://drive.google.com/drive/folders/1QtyIgKCh1qdjuF6zmGKVosR61tsKd1Iq?usp=drive_link" target="_blank" class="proj-link-btn">Drive ↗</a>
+        <a href="https://github.com/LanNguyen185/Adidas-Decision-Support-System" target="_blank" class="proj-link-btn ghost">GitHub</a>
+      </div>
+    </div>
+  </div>
+ <!-- ══════════════════════════════════════════════
+       PROJECT 4 — UI/UX Figma
+  ══════════════════════════════════════════════ -->
+  <div class="project-slide reveal">
+    <div class="proj-accent-stripe"></div>
+    <!-- Visuals -->
+    <div class="proj-visuals">
+      <div class="uiux-layout">
+        <!-- Row 1: 3 phone screens -->
+        <div class="uiux-phones-row">
+          <div class="phone-wrap">
+            <img src="uiux_1.png" alt="UI/UX Screen 1"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="proj-img-placeholder" style="display:none">
+              <div class="ph-icon">📱</div>
+              <div class="ph-label">Screen 1</div>
+              <div class="ph-sub">uiux_1.png</div>
+            </div>
+          </div>
+          <div class="phone-wrap">
+            <img src="uiux_2.png" alt="UI/UX Screen 2"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="proj-img-placeholder" style="display:none">
+              <div class="ph-icon">📱</div>
+              <div class="ph-label">Screen 2</div>
+              <div class="ph-sub">uiux_2.png</div>
+            </div>
+          </div>
+          <div class="phone-wrap">
+            <img src="uiux_3.png" alt="UI/UX Screen 3"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="proj-img-placeholder" style="display:none">
+              <div class="ph-icon">📱</div>
+              <div class="ph-label">Screen 3</div>
+              <div class="ph-sub">uiux_3.png</div>
+            </div>
+          </div>
+        </div>
+        <!-- Row 2: 1 wide horizontal card -->
+        <div class="uiux-wide-wrap">
+          <img src="uiux_4.png" alt="UI/UX – Flow Overview"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">🗺️</div>
+            <div class="ph-label">User Journey / Flow Overview</div>
+            <div class="ph-sub">uiux_4.png — ảnh ngang rộng</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info -->
+    <div class="proj-info">
+      <div class="proj-num">04</div>
+      <span class="proj-period-badge">02 – 04 / 2025</span>
+      <div class="proj-name">UI/UX Design – Language Learning App (Figma)</div>
+      <p class="proj-desc">Designed a complete mobile app UI/UX experience for a language learning platform, covering the full design process from user research through prototype testing.</p>
+      <ul class="proj-highlights">
+        <li>Analyzed behavior of 50+ users; built user journey maps and user flows</li>
+        <li>Designed 25+ screen prototype covering the complete learning flow</li>
+        <li>Applied UX principles (consistency, accessibility) to optimize usability</li>
+        <li>Conducted usability testing and iterated on feedback</li>
+      </ul>
+      <div class="proj-result">✓ Strengthened user experience analysis and UI/UX design proficiency</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Figma</span>
+        <span class="proj-tag">UX Research</span>
+        <span class="proj-tag">User Journey</span>
+        <span class="proj-tag">Prototyping</span>
+        <span class="proj-tag">Usability Testing</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://drive.google.com/drive/folders/1sS1qt1FBod0RiJRDiFfiUl-zi3BWodx2?usp=drive_link" target="_blank" class="proj-link-btn">Drive ↗</a>
+        <a href="https://www.figma.com/proto/MG8IySikuQ8ZLlYcyYUjct?node-id=0-1&t=Ww8IZyTMmhHrm3iT-6" target="_blank" class="proj-link-btn ghost">Prototype ↗</a>
+      </div>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════════════
+       PROJECT 5 — Data Mining
+  ══════════════════════════════════════════════ -->
+  <div class="project-slide reveal">
+    <div class="proj-accent-stripe"></div>
+    <div class="proj-visuals">
+      <div class="proj-imgs-grid three">
+        <div class="proj-img-wrap">
+          <img src="datamine_1.png" alt="Health Insurance Analysis"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">🏥</div>
+            <div class="ph-label">Health Insurance Model</div>
+            <div class="ph-sub">Thay bằng ảnh notebook/chart</div>
+          </div>
+        </div>
+        <div class="proj-img-wrap">
+          <img src="datamine_2.png" alt="NYC House Price Classifier"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">🏠</div>
+            <div class="ph-label">NYC House Price</div>
+            <div class="ph-sub">Thay bằng ảnh confusion matrix</div>
+          </div>
+        </div>
+        <div class="proj-img-wrap">
+          <img src="datamine_3.png" alt="Customer Mall Clustering"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="proj-img-placeholder" style="display:none">
+            <div class="ph-icon">🛍️</div>
+            <div class="ph-label">Customer Clustering</div>
+            <div class="ph-sub">Thay bằng ảnh cluster chart</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="proj-info">
+      <div class="proj-num">05</div>
+      <span class="proj-period-badge">04 / 2026 · Individual Project</span>
+      <div class="proj-name">Data Mining Application in Healthcare &amp; Business</div>
+      <p class="proj-desc">Analyzed and mined data across 4 real-world datasets — Health Insurance, NYC House Price, Customer Mall, and Cosmetic Products — using Python &amp; Google Colab.</p>
+      <ul class="proj-highlights">
+        <li>Performed data preprocessing, visualization, and analysis using Pandas, Matplotlib, and Scikit-learn</li>
+        <li>Applied regression, classification, clustering, and association rule mining models</li>
+        <li>Evaluated model performance using Accuracy, F1-score, and RMSE metrics</li>
+        <li>Best model achieved <strong>Accuracy 97%</strong> on classification tasks</li>
+      </ul>
+      <div class="proj-result">✓ Enhanced skills in data processing, ML model building, and multi-domain data visualization</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Google Colab</span>
+        <span class="proj-tag">Pandas</span>
+        <span class="proj-tag">Scikit-learn</span>
+        <span class="proj-tag">Matplotlib</span>
+        <span class="proj-tag">Data Mining</span>
+        <span class="proj-tag">Machine Learning</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://drive.google.com/drive/folders/1KcsD9H_YvdSieVH5aMoXW9xwMo9pATyL?usp=drive_link" target="_blank" class="proj-link-btn">Drive ↗</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-outer reveal">
+    <!-- Left: text -->
+    <div>
+      <div class="contact-left-label">Get in Touch</div>
+      <h2 class="contact-heading">Let's <em>connect</em></h2>
+      <p class="contact-subtext">
+        I'm actively looking for internship and entry-level roles in Business Analysis, Data Analysis, Software Implementation, and Project Management. If you have an opportunity or just want to connect, I'd love to hear from you.
+      </p>
+      <div class="contact-open-btn">
+        <span class="dot"></span>
+        I'm open to new opportunities
+      </div>
+    </div>
+    <!-- Right: contact cards -->
+    <div class="contact-cards">
+      <a class="contact-card" href="mailto:huonglannguyen185@gmail.com">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">huonglannguyen185@gmail.com</div>
+        </div>
+        <div class="contact-card-arrow">→</div>
+      </a>
+      <a class="contact-card" href="tel:0396708960">
+        <div class="contact-card-icon rose">📞</div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">Phone</div>
+          <div class="contact-card-value">0396 708 960</div>
+        </div>
+        <div class="contact-card-arrow">→</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/hương-lan-nguyễn-b002a2328/" target="_blank">
+        <div class="contact-card-icon">🔗</div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">linkedin.com/in/hương-lan-nguyễn</div>
+        </div>
+        <div class="contact-card-arrow">→</div>
+      </a>
+      <a class="contact-card" href="https://github.com/LanNguyen185" target="_blank">
+        <div class="contact-card-icon">💻</div>
+        <div class="contact-card-body">
+          <div class="contact-card-label">GitHub</div>
+          <div class="contact-card-value">github.com/LanNguyen185</div>
+        </div>
+        <div class="contact-card-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Nguyễn Thị Hương Lan. All rights reserved.</p>
+  <div class="footer-logo">HL<span>.</span></div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button, .project-slide, .skill-group').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.6)'; ring.style.opacity = '0.8'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.45'; });
+  });
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>
