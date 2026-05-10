@@ -104,22 +104,19 @@ Python + Scikit-learn + Google Colab
 ## Running Locally
 
 ```bash
-git clone https://github.com/your-github/portfolio.git
-cd portfolio
-
-# Open index.html directly in browser
-
-# Contact
-
-📧 **Email**  
-[huonglannguyen185@gmail.com](mailto:huonglannguyen185@gmail.com)
-
-💼 **LinkedIn**  
-[https://www.linkedin.com/in/hương-lan-nguyễn-b002a2328/](https://www.linkedin.com/in/hương-lan-nguyễn-b002a2328/)
-
-💻 **GitHub**  
-[https://github.com/LanNguyen185](https://github.com/LanNguyen185)
+git clone https://github.com/LanNguyen185/Portfolio.git
+cd Portfolio
+```
 
 ---
+
+## 📬 Connect
+
+- [LinkedIn](https://www.linkedin.com/in/h%C6%B0%C6%A1ng-lan-nguy%E1%BB%85n-b002a2328/)
+- [GitHub](https://github.com/LanNguyen185)
+- Email : huonglannguyen185@gmail.com
+
+---
+
 
 Built with care · Nguyễn Thị Hương Lan · 2026
