@@ -4,7 +4,7 @@ Business Analyst · Data Analyst · Software Implementation · Project Managemen
 
 Personal portfolio website showcasing my academic and individual projects in Business Analysis, Data Analytics, ERP-SAP, UX Research, and System Development.
 
-🌐 Live site → your-portfolio-link.github.io/
+🌐 Live site → [My Portfolio](https://lannguyen185.github.io/Portfolio/)
 
 ---
 
@@ -108,3 +108,18 @@ git clone https://github.com/your-github/portfolio.git
 cd portfolio
 
 # Open index.html directly in browser
+
+# Contact
+
+📧 **Email**  
+[huonglannguyen185@gmail.com](mailto:huonglannguyen185@gmail.com)
+
+💼 **LinkedIn**  
+[https://www.linkedin.com/in/hương-lan-nguyễn-b002a2328/](https://www.linkedin.com/in/hương-lan-nguyễn-b002a2328/)
+
+💻 **GitHub**  
+[https://github.com/LanNguyen185](https://github.com/LanNguyen185)
+
+---
+
+Built with care · Nguyễn Thị Hương Lan · 2026
